@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziyorat - VIP Taklifnoma</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-green: #0a3d1d; /* To'q islomiy yashil */
+            --gold-gradient: linear-gradient(45deg, #c5a059, #f9f1b0, #c5a059);
+            --gold: #c5a059;
+            --cream: #fdfcf0;
+        }
+
+        body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background: var(--cream); color: #333; overflow-x: hidden; }
+
+        /* VIP KONVERT */
+        #envelope {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--deep-green);
+            background-image: linear-gradient(rgba(10, 61, 29, 0.85), rgba(10, 61, 29, 0.85)), url('kaba_bg.jpg');
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: 1.5s cubic-bezier(0.8, 0, 0.2, 1);
+        }
+
+        .seal-container { text-align: center; cursor: pointer; transition: 0.5s; }
+        .seal-container:hover { transform: scale(1.1); }
+        .seal-container img { width: 140px; filter: drop-shadow(0 0 20px var(--gold)); }
+        .seal-text { color: var(--gold); font-family: 'Cinzel', serif; margin-top: 20px; letter-spacing: 5px; font-weight: bold; }
+
+        /* ASOSIY SAHIFA - JOYNAMOZ USLUBIDA */
+        #content { 
+            display: none; 
+            padding: 40px 15px;
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        }
+
+        .main-card {
+            max-width: 480px; margin: 0 auto; background: white;
+            padding: 60px 30px; border-radius: 50px 50px 15px 15px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            border: 3px solid var(--gold);
+            position: relative; overflow: hidden;
+            background-image: linear-gradient(180deg, #fff 0%, #fdfcf0 100%);
+        }
+
+        /* Joynamoz chetlari (pattern) */
+        .main-card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 20px;
+            background: repeating-linear-gradient(90deg, var(--gold), var(--gold) 10px, transparent 10px, transparent 20px);
+        }
+
+        .bobo-buvi-img { width: 220px; margin: 0 auto 20px; display: block; border-radius: 50%; border: 4px double var(--gold); }
+        .clock-icon { width: 60px; position: absolute; top: 30px; right: 30px; opacity: 0.7; }
+
+        .names { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--deep-green); font-weight: 700; margin: 15px 0; }
+        .invitation-text { font-style: italic; font-size: 1rem; color: #444; line-height: 1.8; margin-bottom: 30px; }
+
+        /* INFO BLOKLAR */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; }
+        .info-box { background: #f4f8f1; padding: 15px; border-radius: 15px; border: 1px solid #e0e0e0; }
+        .info-box strong { color: var(--deep-green); display: block; margin-bottom: 5px; font-size: 0.8rem; }
+
+        /* TIMER */
+        .timer-container { margin: 40px 0; }
+        .timer-grid { display: flex; justify-content: center; gap: 10px; }
+        .t-item { background: var(--deep-green); color: white; padding: 10px; border-radius: 12px; min-width: 60px; }
+        .t-item span { font-size: 1.5rem; font-weight: bold; display: block; }
+        .t-item small { font-size: 0.7rem; color: var(--gold); }
+
+        /* TUGMALAR */
+        .btn-gold { 
+            background: var(--gold-gradient); color: var(--deep-green); 
+            padding: 18px; border-radius: 35px; display: block; 
+            text-decoration: none; font-weight: bold; margin: 10px 0;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* RSVP */
+        .rsvp-form { background: #fdfdf5; padding: 25px; border-radius: 20px; border: 1px solid var(--gold); margin-top: 40px; }
+        .input-field { width: 100%; padding: 15px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 12px; background: white; }
+        
+        .tasbeh-deco { width: 100px; opacity: 0.4; margin: 20px auto; display: block; }
+
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
+    </style>
+</head>
+<body>
+
+    <div id="envelope">
+        <div class="seal-container" onclick="openMe()">
+            <img src="seal_gold.png" alt="Oltin Muhr">
+            <div class="seal-text">OCHISH UCHUN BOSING</div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="main-card" data-aos="zoom-in">
+            <img src="kaaba_clock.png" class="clock-icon" alt="Makka Soati">
+            
+            <div data-aos="fade-down" data-aos-delay="300">
+                <img src="bobo_buvi.png" class="bobo-buvi-img" alt="Hoji Bobo va Hoji Ona">
+            </div>
+
+            <p style="color: var(--gold); font-weight: bold; letter-spacing: 4px; font-size: 0.7rem;">BISMILLAHIR ROHMANIR ROHIM</p>
+            
+            <h1 class="names">RAIM BOBO & <br> HOJI ONAMIZ</h1>
+            
+            <p class="invitation-text">
+                "Allohning marhamati bilan muqaddas Ka'batullohni ziyorat qilib qaytgan, nuroniy hojilarimizning quvonchli kunida sizni ehson dasturxonimizda kutib qolamiz."
+            </p>
+
+            <div class="info-grid">
+                <div class="info-box" data-aos="fade-right">
+                    <strong>SANA</strong>
+                    27-DEKABR, 2026
+                </div>
+                <div class="info-box" data-aos="fade-left">
+                    <strong>VAQT</strong>
+                    SOAT 12:00 DA
+                </div>
+            </div>
+
+            <div class="map-box">
+                <p style="font-weight: 600; color: var(--deep-green);"><i class="fas fa-map-marker-alt"></i> SHO'RCHI TUMANI, "IDEAL SS"</p>
+                <a href="https://maps.google.com" class="btn-gold">LOKATSIYA (GOOGLE MAPS)</a>
+            </div>
+
+            <div class="timer-container">
+                <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px;">ZIYORAT TADBIRIGACHA QOLDI:</p>
+                <div class="timer-grid">
+                    <div class="t-item"><span id="d">00</span><small>KUN</small></div>
+                    <div class="t-item"><span id="h">00</span><small>SOAT</small></div>
+                    <div class="t-item"><span id="m">00</span><small>MIN</small></div>
+                </div>
+            </div>
+
+            <div class="rsvp-form">
+                <h3 style="color: var(--deep-green); font-family: 'Cinzel', serif;">Tashrifingizni tasdiqlang</h3>
+                <form id="ziyorat-form">
+                    <input type="text" name="ism" placeholder="Ismingiz" required class="input-field">
+                    <div style="display: flex; gap: 5px;">
+                        <button type="button" class="opt-btn" id="btn-yes" onclick="setStatus('Boraman', this)" style="flex:1; padding:10px; border-radius:10px; cursor:pointer;">Boraman</button>
+                        <button type="button" class="opt-btn" id="btn-no" onclick="setStatus('Borolmayman', this)" style="flex:1; padding:10px; border-radius:10px; cursor:pointer;">Borolmayman</button>
+                    </div>
+                    <input type="hidden" name="holat" id="guest-status" required>
+                    <button type="submit" class="submit-btn" id="send-btn" style="width:100%; margin-top:15px; background:var(--deep-green); color:white; padding:15px; border-radius:30px; border:none; cursor:pointer; font-weight:bold;">YUBORISH</button>
+                </form>
+                <div id="success-msg" style="display:none; color: var(--deep-green); margin-top:10px; font-weight:bold;">Muvaffaqiyatli yuborildi. Rahmat!</div>
+            </div>
+
+            <img src="tasbeh_icon.png" class="tasbeh-deco" alt="Tasbeh">
+            <p style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--gold);">Kutib qolamiz!</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        function openMe() {
+            document.getElementById('envelope').style.transform = 'scale(0.8) translateY(-120vh)';
+            document.getElementById('content').style.display = 'block';
+            setTimeout(() => { AOS.init({ duration: 1500, once: true }); }, 200);
+            setInterval(updateTimer, 1000);
+        }
+
+        function setStatus(val, el) {
+            document.getElementById('guest-status').value = val;
+            document.querySelectorAll('.opt-btn').forEach(b => {
+                b.style.background = 'white';
+                b.style.color = 'black';
+            });
+            el.style.background = '#0a3d1d';
+            el.style.color = 'white';
+        }
+
+        function updateTimer() {
+            const diff = new Date("December 27, 2026 12:00:00").getTime() - new Date().getTime();
+            if (diff > 0) {
+                document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            }
+        }
+
+        document.getElementById('ziyorat-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('send-btn');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzN788ZL4hPwcyHjcwXFgz7PiNed_qP1NV_4hHwsGZFKJ7QOgOAe1MNBjeBsl1ww1UE6A/exec';
+            
+            btn.disabled = true; btn.innerText = "YUBORILMOQDA...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(this)})
+                .then(res => {
+                    this.style.display = 'none';
+                    document.getElementById('success-msg').style.display = 'block';
+                })
+                .catch(err => alert("Xato! Qayta urining."));
+        });
+    </script>
+</body>
+</html>
